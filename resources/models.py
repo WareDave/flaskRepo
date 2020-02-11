@@ -14,10 +14,35 @@ class User(UserMixin, Model):
         database = DATABASE
 
 class Character(Model):
-    name = CharField()
-    breed = CharField()
+    name = CharField(unique = True)
+    realm = CharField()
+    classLevel = CharField()
+    background = CharField()
+    race = CharField()
+    alighment = CharField()
+    exp = CharField()
+    strength = CharField()
+    dex = CharField()
+    const = CharField()
+    intelligence = CharField()
+    wisdom = CharField()
+    charisma = CharField()
+    inspiration = CharField()
+    saving = CharField()
+    skills = CharField()
+    passive = CharField()
+    armorclass = CharField()
+    init = CharField()
+    speed = CharField()
+    currenthp = CharField()
+    temphp = CharField()
+    hdice = CharField()
+    dsaves = CharField()
+    atks_spells = CharField()
+    equipment = CharField()
+    fandt = CharField() 
     created_at = DateTimeField(default=datetime.datetime.now)
-    owner = ForeignKeyField(User, backref = 'characters')
+    user = ForeignKeyField(User, backref = 'characters')
 
     class Meta:
         database = DATABASE
