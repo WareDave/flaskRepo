@@ -3,11 +3,12 @@ from peewee import *
 from flask_login import UserMixin
 
 # DATABASE = SqliteDatabase('charactertest.sqlite')
-DATABASE = PostgresqlDatabase('D&D_app')
+DATABASE = PostgresqlDatabase('saves_the_day_app')
 
 class User(UserMixin, Model):
     username = CharField(unique = True)
     email = CharField(unique = True)
+    created_at = DateTimeField(default=datetime.datetime.now)
     password = CharField()
 
     class Meta:
