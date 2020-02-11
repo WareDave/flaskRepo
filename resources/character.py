@@ -4,11 +4,11 @@ from flask_login import current_user, login_required
 
 import models
 
-character = Blueprint('characters', 'characters')
+characters = Blueprint('characters', 'characters')
 
 
 # Index route
-@character.route('/', methods=["GET"])
+@characters.route('/', methods=["GET"])
 @login_required
 def get_all_characters():
     try:
@@ -21,7 +21,7 @@ def get_all_characters():
         return jsonify(data={}, status={"code": 400, "message": "Error getting the resources"})
 
 # Create route
-@character.route('/', methods=["POST"])
+@characters.route('/', methods=["POST"])
 @login_required
 def create_characters():
     try:
@@ -37,7 +37,7 @@ def create_characters():
 
 
 # Show route
-@character.route('/<id>', methods=["GET"])
+@characters.route('/<id>', methods=["GET"])
 def get_one_characters(id):
     try:
         character = models.Character.get_by_id(id)
@@ -48,7 +48,7 @@ def get_one_characters(id):
         return jsonify(data={}, status={"code": 400, "message": "Error getting one resource"})
 
 # Update route
-@character.route('/<id>', methods=["PUT"])
+@characters.route('/<id>', methods=["PUT"])
 def update_characters(id):
     try:
         payload = request.get_json()
@@ -61,7 +61,7 @@ def update_characters(id):
 
 
 # Delete route
-@character.route('/<id>', methods=["DELETE"])
+@characters.route('/<id>', methods=["DELETE"])
 def delete_character(id):
     try:
         query = models.Character.delete().where(models.Character.id == id)
