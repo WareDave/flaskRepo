@@ -39,7 +39,7 @@ def login():
 
         user_dict = model_to_dict(user)
 
-        # if(user_dict['password'] == payload['password']):
+       
         if(check_password_hash(user_dict['password'], payload['password'])):
             del user_dict['password']
             login_user(user)

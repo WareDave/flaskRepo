@@ -4,7 +4,7 @@ from flask_cors import CORS
 from flask_login import LoginManager
 
 app = Flask(__name__)
-app.secret_key = 'ballsdeep'
+app.secret_key = 'BallsDeep'
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -31,8 +31,6 @@ def unauthorized():
         }
     )
 
-from resources.user import users
-from resources.character import characters
 
 
 CORS(users, origins=['http://localhost:3000'], supports_credentials=True)
@@ -57,7 +55,8 @@ def after_request(response):
 
 @app.route('/')
 def index():
-    return 'hi'
+    return 'Fuck You'
+
 
 DEBUG = True
 PORT = 8000

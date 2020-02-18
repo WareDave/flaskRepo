@@ -5,17 +5,16 @@ from flask_login import current_user, login_required
 import models
 
 characters = Blueprint('characters', 'characters')
-
+print()
 
 # Index route
 @characters.route('/', methods=["GET"])
-@login_required
 def get_all_characters():
     try:
         characters = [model_to_dict(character) for character in models.Character.select().where(models.Character.loggedUser_id == current_user.id)]
         print(characters)
         for character in characters:
-            character['loggedUser'].pop('password')
+            character['loggedUser_id'].pop('password')
         return jsonify(data=characters, status={"code": 200, "message": "Success"})
     except models.DoesNotExist:
         return jsonify(data={}, status={"code": 400, "message": "Error getting the resources"})
