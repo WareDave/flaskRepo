@@ -14,7 +14,7 @@ def get_all_characters():
         characters = [model_to_dict(character) for character in models.Character.select().where(models.Character.loggedUser_id == current_user.id)]
         print(characters)
         for character in characters:
-            character['loggedUser_id'].pop('password')
+            character['loggedUser'].pop('password')
         return jsonify(data=characters, status={"code": 200, "message": "Success"})
     except models.DoesNotExist:
         return jsonify(data={}, status={"code": 400, "message": "Error getting the resources"})
