@@ -14,7 +14,7 @@ class User(UserMixin, Model):
     class Meta:
         database = DATABASE
         
-        class Legal(Model):
+class Legal(Model):
     name = CharField(unique = True)
     created_at = DateTimeField(default=datetime.datetime.now)
     loggedUser = ForeignKeyField(User, backref = 'legals')
@@ -29,7 +29,7 @@ class User(UserMixin, Model):
     class Meta:
         database = DATABASE
         
-class Stock(model):
+class Stock(Model):
     created_at = DateTimeField(default=datetime.datetime.now)
     loggedUser = ForeignKeyField(User, backref = 'legals')
     category = CharField()
