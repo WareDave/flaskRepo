@@ -9,7 +9,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 import models
-from resources.character import characters
+from resources.character import stocks
 from resources.user import users
 
 @login_manager.user_loader
@@ -34,8 +34,8 @@ def unauthorized():
 
 
 CORS(users, origins=['http://localhost:3000'], supports_credentials=True)
-CORS(characters, origins=['http://localhost:3000'], supports_credentials=True)
-
+CORS(stocks, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(legals, origins=['http://localhost:3000'], supports_credentials=True)
 
 
 @app.before_request
@@ -45,7 +45,8 @@ def before_request():
     g.db.connect()
 
 app.register_blueprint(users, url_prefix='/api/v1/users')
-app.register_blueprint(characters, url_prefix='/api/v1/characters')
+app.register_blueprint(stocks, url_prefix='/api/v1/stocks')
+app.register_blueprint(legals, url_prefix='/api/v1/legals')
 
 
 @app.after_request

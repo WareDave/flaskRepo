@@ -13,6 +13,37 @@ class User(UserMixin, Model):
 
     class Meta:
         database = DATABASE
+        
+        class Legal(Model):
+    name = CharField(unique = True)
+    created_at = DateTimeField(default=datetime.datetime.now)
+    loggedUser = ForeignKeyField(User, backref = 'legals')
+    par1 = CharField()
+    par2 = CharField()
+    par3 = CharField() 
+    ia1 = IntegerField()
+    ia2 = IntegerField()
+    ia3 = IntegerField()
+    
+   
+    class Meta:
+        database = DATABASE
+        
+class Stock(model):
+    created_at = DateTimeField(default=datetime.datetime.now)
+    loggedUser = ForeignKeyField(User, backref = 'legals')
+    category = CharField()
+    brend = CharField()
+    description = CharField()
+    size = CharField()
+    price = CharField()
+    fee = CharField()
+    split = CharField()
+    coder =CharField()
+    venderID = CharField()
+
+    class Meta:
+        database = DATABASE
 
 class Character(Model):
     name = CharField(unique = True)
