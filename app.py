@@ -4,7 +4,7 @@ from flask_cors import CORS
 from flask_login import LoginManager
 
 app = Flask(__name__)
-app.secret_key = 'BallsDeep'
+app.secret_key = 'idbeholdV'
 login_manager = LoginManager()
 login_manager.init_app(app)
 
