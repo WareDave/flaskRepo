@@ -9,7 +9,9 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 import models
-from resources.character import stocks
+from resources.character import characters
+from resources.stock import stocks
+from resources.legal import legals
 from resources.user import users
 
 @login_manager.user_loader
