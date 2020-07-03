@@ -3,7 +3,7 @@ from peewee import *
 from flask_login import UserMixin
 
 DATABASE = SqliteDatabase('test2.sqlite')
-# DATABASE = PostgresqlDatabase('saves_the_day_app')
+# DATABASE = PostgresqlDatabase('outthebox')
 
 class User(UserMixin, Model):
     username = CharField()
@@ -77,9 +77,19 @@ class Character(Model):
    
     class Meta:
         database = DATABASE
-
+    
+class WaitList(model):
+    name = CharField(unique = True)
+    created_at = DateTimeField(default=datetime.datetime.now)
+    loggedUser = ForeignKeyField(User, backref = 'WaitList')
+    phone = IntegerField(null=False)
+    email = CharField(null=False )
+    
+    class Meta:
+        database = DATABASE        
+    
 def initialize():
     DATABASE.connect()
-    DATABASE.create_tables([User, Character], safe=True)
+    DATABASE.create_tables([User, Character, Stock, Legal, WaitList], safe=True)
     print('TABLES Bitches')
     DATABASE.close() 
